@@ -6,22 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/myscreen"
-        android:layout_width="345dp"
-        android:layout_height="66dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:text="@string/button0"
-        android:textSize="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
@@ -186,7 +170,7 @@
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:text="@string/buttonClear"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button0"
@@ -195,7 +179,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/button0"
-                android:textSize="34sp" />
+                android:textSize="34sp"
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
             <Button
                 android:id="@+id/buttonEqual"
@@ -207,5 +192,20 @@
                 android:textSize="34sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/myscreen"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:gravity="bottom|end"
+        android:text="@string/button0"
+        android:textColor="#121111"
+        android:textColorHint="#050505"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

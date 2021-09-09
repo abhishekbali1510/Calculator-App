@@ -5,174 +5,253 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button1;
-    private Button button2;
-    private Button button3;
-    private Button button4;
-    private Button button5;
-    private Button button6;
-    private Button button7;
-    private Button button8;
-    private Button button9;
-    private Button button0;
-    private Button buttonPlus;
-    private Button buttonMinus;
-    private Button buttonMultiply;
-    private Button buttonDivide;
-    private Button buttonClear;
-    private Button buttonEqual;
-    private EditText myscreen;
+    public EditText myScreen;
+    String stck="";
+    String postfix="";
+    public int prec(char c)
+    {
+        if(c=='+'||c=='-')
+            return 1;
+        else if(c=='*'||c=='/')
+            return 2;
+        else return 0;
+    }
+    public void push(char c)
+    {
+        if(stck=="")
+        {
+            stck=stck+c;
+        }
+        else if(prec(c)>prec(stck.charAt(stck.length()-1)))
+        {
+            stck=stck+c;
 
+        }
+        else
+        {
+            postfix=postfix+stck.charAt(stck.length()-1);
+            stck=stck.substring(0,stck.length()-1);
+            push(c);
 
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button1=findViewById(R.id.button1);
-        button2=findViewById(R.id.button2);
-        button3=findViewById(R.id.button3);
-        button4=findViewById(R.id.button4);
-        button5=findViewById(R.id.button5);
-        button6=findViewById(R.id.button6);
-        button7=findViewById(R.id.button7);
-        button8=findViewById(R.id.button8);
-        button9=findViewById(R.id.button9);
-        button0=findViewById(R.id.button0);
-        buttonPlus=findViewById(R.id.buttonPlus);
-        buttonMinus=findViewById(R.id.buttonMinus);
-        buttonMultiply=findViewById(R.id.buttonMultiply);
-        buttonDivide=findViewById(R.id.buttonDivide);
-        buttonClear=findViewById(R.id.buttonClear);
-        buttonEqual=findViewById(R.id.buttonEqual);
-        myscreen=findViewById(R.id.myscreen);
+        Button button1 = findViewById(R.id.button1);
+        Button button2 = findViewById(R.id.button2);
+        Button button3 = findViewById(R.id.button3);
+        Button button4 = findViewById(R.id.button4);
+        Button button5 = findViewById(R.id.button5);
+        Button button6 = findViewById(R.id.button6);
+        Button button7 = findViewById(R.id.button7);
+        Button button8 = findViewById(R.id.button8);
+        Button button9 = findViewById(R.id.button9);
+        Button button0 = findViewById(R.id.button0);
+        Button buttonPlus = findViewById(R.id.buttonPlus);
+        Button buttonMinus = findViewById(R.id.buttonMinus);
+        Button buttonMultiply = findViewById(R.id.buttonMultiply);
+        Button buttonDivide = findViewById(R.id.buttonDivide);
+        Button buttonClear = findViewById(R.id.buttonClear);
+        Button buttonEqual = findViewById(R.id.buttonEqual);
 
+        TextView myScreen=(TextView) findViewById(R.id.myscreen);
+        myScreen.setText("0");
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"1");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("1");
+                else
+                    myScreen.setText(s+"1");
             }
         });
+
+
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"2");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("2");
+                else
+                    myScreen.setText(s+"2");
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"3");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("3");
+                else
+                    myScreen.setText(s+"3");
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"4");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("4");
+                else
+                    myScreen.setText(s+"4");
             }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"5");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("5");
+                else
+                    myScreen.setText(s+"5");
             }
         });
 
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"6");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("6");
+                else
+                    myScreen.setText(s+"6");
             }
         });
 
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"7");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("7");
+                else
+                    myScreen.setText(s+"7");
             }
         });
 
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"8");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("8");
+                else
+                    myScreen.setText(s+"8");
             }
         });
 
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"9");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("9");
+                else
+                    myScreen.setText(s+"9");
             }
         });
 
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"0");
+                String s = myScreen.getText().toString();
+                if(s=="0")
+                    myScreen.setText("0");
+                else
+                    myScreen.setText(s+"0");
             }
         });
 
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"+");
+                String s = myScreen.getText().toString();
+                if(s.charAt(s.length()-1)=='+'||s.charAt(s.length()-1)=='-'||s.charAt(s.length()-1)=='*'||s.charAt(s.length()-1)=='/')
+                    myScreen.setText(s);
+                else
+                    myScreen.setText(s+"+");
             }
         });
 
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"-");
+                String s = myScreen.getText().toString();
+                if(s.charAt(s.length()-1)=='+'||s.charAt(s.length()-1)=='-'||s.charAt(s.length()-1)=='*'||s.charAt(s.length()-1)=='/')
+                    myScreen.setText(s);
+                else
+                    myScreen.setText(s+"-");
             }
         });
 
         buttonMultiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"*");
+                String s = myScreen.getText().toString();
+                if(s.charAt(s.length()-1)=='+'||s.charAt(s.length()-1)=='-'||s.charAt(s.length()-1)=='*'||s.charAt(s.length()-1)=='/')
+                    myScreen.setText(s);
+                else
+                    myScreen.setText(s+"*");
             }
         });
 
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"/");
+                String s = myScreen.getText().toString();
+                if(s.charAt(s.length()-1)=='+'||s.charAt(s.length()-1)=='-'||s.charAt(s.length()-1)=='*'||s.charAt(s.length()-1)=='/')
+                    myScreen.setText(s);
+                else
+                    myScreen.setText(s+"/");
             }
         });
 
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myscreen.setText("");
+                myScreen.setText("0");
             }
         });
 
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = myscreen.getText().toString();
-                myscreen.setText(s+"1");
+
+                String s=myScreen.getText().toString();
+                for(int i=0;i<s.length();i++)
+                {
+                    if(s.charAt(i)=='+'||s.charAt(i)=='-'||s.charAt(i)=='*'||s.charAt(i)=='/')
+                    {
+                        push(s.charAt(i));
+                    }
+                    else
+                        postfix=postfix+s.charAt(i);
+                }
+                postfix=postfix+stck;
+//                char[] chr=postfix.toCharArray();
+                myScreen.setText(postfix+"");
+                System.out.println(postfix);
+                System.out.println(stck);
+                System.out.println(s);
+
+
             }
+
+
+
         });
+
     }
+
 }
