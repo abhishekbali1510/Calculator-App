@@ -7,10 +7,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity {
     public EditText myScreen;
     String stck="";
     String postfix="";
+    public String reverse(String rev)
+    {
+        char[] revArr=rev.toCharArray();
+        char tmp;
+        int i=0,length=rev.length();
+        while(i<rev.length()/2)
+        {
+            tmp=revArr[i];
+            revArr[i]=revArr[length-i-1];
+            revArr[length-i-1]=tmp;
+            i++;
+        }
+
+       rev=String.valueOf(revArr);
+        rev=rev.replaceAll(".(?!$)","$0 ");
+        return rev;
+    }
     public int prec(char c)
     {
         if(c=='+'||c=='-')
@@ -21,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void push(char c)
     {
-        if(stck=="")
+        if(stck.isEmpty())
         {
             stck=stck+c;
         }
@@ -32,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            postfix=postfix+stck.charAt(stck.length()-1);
+            postfix=postfix+stck.charAt(stck.length()-1)+" ";
             stck=stck.substring(0,stck.length()-1);
             push(c);
 
@@ -221,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 myScreen.setText("0");
+                postfix="";
+                stck="";
             }
         });
 
@@ -236,10 +256,10 @@ public class MainActivity extends AppCompatActivity {
                         push(s.charAt(i));
                     }
                     else
-                        postfix=postfix+s.charAt(i);
+                        postfix=postfix+s.charAt(i)+" ";
                 }
+                stck=reverse(stck);
                 postfix=postfix+stck;
-//                char[] chr=postfix.toCharArray();
                 myScreen.setText(postfix+"");
                 System.out.println(postfix);
                 System.out.println(stck);
