@@ -12,6 +12,57 @@ public class MainActivity extends AppCompatActivity {
     public EditText myScreen;
     String stck="";
     String postfix="";
+
+    public int evaluate(String pos)
+    {   int i=0,j=0;
+        int [] newStck = new int[100];
+        int place=0;
+        while(i<pos.length())
+        {
+            if(pos.charAt(i)=='.')
+            {
+                place=0;
+            }
+            else if(pos.charAt(i)=='+'||pos.charAt(i)=='-'||pos.charAt(i)=='*'||pos.charAt(i)=='/')
+            {
+                if(pos.charAt(i)=='+')
+                {
+                    newStck[j-2]=newStck[j-1]+newStck[j-2];
+                }
+                else if(pos.charAt(i)=='-')
+                {
+                    newStck[j-2]=newStck[j-2]-newStck[j-1];
+                }
+                else if(pos.charAt(i)=='*')
+                {
+                    newStck[j-2]=newStck[j-1]*newStck[j-2];
+                }
+                else if(pos.charAt(i)=='/')
+                {
+                    newStck[j-2]=newStck[j-2]/newStck[j-1];
+                }
+                j--;
+            }
+            else
+            {
+                int x=Integer.parseInt(String.valueOf(pos.charAt(i)));
+                if(place==0)
+                {
+                    newStck[j++]= x;
+
+                }
+                else
+                {
+
+                    newStck[j-1]=newStck[j-1]*10+x;
+
+                }
+                place++;
+            }
+            i++;
+        }
+        return newStck[j-1];
+    }
     public String reverse(String rev)
     {
         char[] revArr=rev.toCharArray();
@@ -26,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
        rev=String.valueOf(revArr);
-        rev=rev.replaceAll(".(?!$)","$0 ");
+
         return rev;
     }
     public int prec(char c)
@@ -50,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            postfix=postfix+stck.charAt(stck.length()-1)+" ";
+            postfix=postfix+stck.charAt(stck.length()-1);
             stck=stck.substring(0,stck.length()-1);
             push(c);
 
@@ -253,17 +304,19 @@ public class MainActivity extends AppCompatActivity {
                 {
                     if(s.charAt(i)=='+'||s.charAt(i)=='-'||s.charAt(i)=='*'||s.charAt(i)=='/')
                     {
+                        postfix=postfix+".";
                         push(s.charAt(i));
                     }
                     else
-                        postfix=postfix+s.charAt(i)+" ";
+                        postfix=postfix+s.charAt(i);
                 }
                 stck=reverse(stck);
                 postfix=postfix+stck;
-                myScreen.setText(postfix+"");
-                System.out.println(postfix);
-                System.out.println(stck);
-                System.out.println(s);
+                int num=evaluate(postfix);
+                String rslt=Integer.toString(num);
+                myScreen.setText(rslt+"");
+                postfix="";
+                stck="";
 
 
             }
